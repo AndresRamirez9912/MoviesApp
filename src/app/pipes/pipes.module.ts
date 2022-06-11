@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImagePipe } from './image.pipe';
 import { GetSpecificDataPipe } from './get-specific-data.pipe';
+import { ParesPipe } from './pares.pipe';
 
 
 
@@ -9,6 +10,7 @@ import { GetSpecificDataPipe } from './get-specific-data.pipe';
   declarations: [
     ImagePipe,
     GetSpecificDataPipe,
+    ParesPipe,
   ],
   imports: [
     CommonModule
@@ -16,6 +18,7 @@ import { GetSpecificDataPipe } from './get-specific-data.pipe';
   exports:[
     ImagePipe,
     GetSpecificDataPipe,
+    ParesPipe
   ]
 })
 export class PipesModule { }
