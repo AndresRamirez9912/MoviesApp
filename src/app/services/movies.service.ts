@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { responseMovieDB, movie } from '../interfaces/movies.interface';
+import { responseMovieDB} from '../interfaces/movies.interface';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { detail } from '../interfaces/detail.interface';
+import { detail, Genre } from '../interfaces/detail.interface';
 import { actors } from '../interfaces/actors.interface';
 
 @Injectable({
@@ -87,6 +87,15 @@ export class MoviesService {
         api_key:environment.api_key,
         language:'es',
         query:search,
+      }
+    })
+  }
+
+  getGenres():Observable<Genre[]>{
+    return this.http.get<Genre[]>(`${environment.movieURL}/genre/movie/list`,{
+      params:{
+        api_key:environment.api_key,
+        language:'es',
       }
     })
   }

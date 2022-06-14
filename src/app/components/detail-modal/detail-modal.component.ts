@@ -22,6 +22,7 @@ export class DetailModalComponent implements OnInit {
   limitFlag : boolean = false;
   starName:string="star-outline";
   message:string="";
+  exist:boolean;
   slideActoresOpts={
     slidesPerView:3.3,
     freeMode:true,
@@ -42,7 +43,6 @@ export class DetailModalComponent implements OnInit {
       this.actorsDetail=resp;
     });
   }
-
   showMoreText(){
     this.limitFlag=!this.limitFlag; // Toggle
     if(this.limitFlag){
@@ -57,12 +57,12 @@ export class DetailModalComponent implements OnInit {
     this.modalCTR.dismiss(); // Close the modal
   }
 
-  addFavorite(){
+  async addFavorite(){
     // Save or remove in the storage
     this.storageService.saveRemoveData(this.movieDetail)
 
     // Get if the movie already exist in the favorite array
-    const exist:boolean = this.storageService.movieInFavorites(this.movieDetail);
+    const exist:boolean = await this.storageService.movieInFavorites(this.movieDetail);
 
     // Change the icon
     if(exist){

@@ -15,6 +15,11 @@ export class StorageService {
     this.init();
    }
 
+   // Getters
+   getFavorites():detail[]{
+    return [...this._localMovies]
+   }
+
   // Init the storage
   async init(){
     const storage = await this.storage.create();
@@ -38,7 +43,19 @@ export class StorageService {
   }
 
   // Check if the movie already exist in the favorite array
-  movieInFavorites(movie:detail):boolean{
+  async movieInFavorites(movie:detail){
+    if(this._localMovies.length===0){
+      await this.loadFavorites()
+    }
     return !!(this._localMovies.find(localMovie=>localMovie.title===movie.title));
+  }
+
+  // Load Favorites
+  async loadFavorites(){
+    try {
+      this._localMovies = await this._storage.get('movies') || []; // If when I load there are not movies return null
+    } catch (error) {
+      // Do nothing
+    }
   }
 }
