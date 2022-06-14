@@ -21,3 +21,8 @@ export interface responseMovieDB {
   total_pages: number;
   total_results: number;
 }
+
+export interface movieBygenre{
+  genre : string,
+  movies : movie[]
+}
