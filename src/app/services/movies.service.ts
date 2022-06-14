@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { responseMovieDB } from '../interfaces/movies.interface';
+import { responseMovieDB, movie } from '../interfaces/movies.interface';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { detail } from '../interfaces/detail.interface';
@@ -76,5 +76,18 @@ export class MoviesService {
         api_key: environment.api_key
       }
     });
+  }
+  getIdeas():Observable<string[]>{
+    return this.http.get<string[]>('../../assets/Data/ideas.json')
+  }
+
+  getSearchMovie(search:string):Observable<responseMovieDB>{
+    return this.http.get<responseMovieDB>(`${environment.movieURL}/search/movie`,{
+      params:{
+        api_key:environment.api_key,
+        language:'es',
+        query:search,
+      }
+    })
   }
 }
