@@ -11,7 +11,7 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="6" *ngFor="let movie of getFavoriteArray">
-          <ion-card>
+          <ion-card (click)="showDetail(movie.id)">
             <img [src]="movie.poster_path | image">
             <ion-card-content>
               <h2>{{movie.title}}</h2>
